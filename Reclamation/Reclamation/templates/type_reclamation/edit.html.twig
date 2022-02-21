@@ -1,0 +1,13 @@
+{% extends 'basedashboard.html.twig' %}
+
+{% block title %}Edit TypeReclamation{% endblock %}
+
+{% block body %}
+    <h1>modifier TypeReclamation</h1>
+
+    {{ include('type_reclamation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="badge badge-success" href="{{ path('type_reclamation_index') }}">Liste des types</a>
+
+    {{ include('type_reclamation/_delete_form.html.twig') }}
+{% endblock %}

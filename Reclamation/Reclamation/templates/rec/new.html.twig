@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reclamation{% endblock %}
+
+{% block body %}
+    <div style="margin-left: 350px">
+    <h1 class="hero-heading hero-heading-dark" >Create new Reclamation</h1>
+
+    {{ include('rec/_form.html.twig') }}
+
+   <!-- <a href="{{ path('rec_index') }}">back to list</a> -->
+    </div>
+{% endblock %}

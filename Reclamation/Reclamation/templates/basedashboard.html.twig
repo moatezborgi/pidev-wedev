@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block css %}
+      <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/css/vendor.bundle.base.css') }}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/font-awesome/css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{{ asset('backoffice/assets/css/demo_1/style.css') }}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{{ asset('backoffice/assets/images/favicon.png') }}" />
+        {% endblock %}
+
+</head>
+  <body>
+    <div class="container-scroller">
+      
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+           
+         
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                
+                <div class="nav-profile-text">
+                  <p class="mb-1 text-black">David Greymaax</p>
+                </div>
+              </a>
+              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="mdi mdi-cached mr-2 text-success"></i> Paramétres </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                  <i class="mdi mdi-logout mr-2 text-primary"></i> deconnecter </a>
+              </div>
+            </li>
+          
+           
+            
+          </ul>
+         
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+         
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <a href="#" class="nav-link">
+                
+                <div class="nav-profile-text d-flex flex-column">
+                  <span class="font-weight-bold mb-2">David Grey. H</span>
+                  <span class="text-secondary text-small">Project Manager</span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Backoffice/dashboard">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
+                <span class="menu-title">Gestion des utilisateurs</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-account"></i>
+              </a>
+              <div class="collapse" id="page-layouts">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="">Ajouter utilisateur</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="">Liste des utilisateurs</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#apps" aria-expanded="false" aria-controls="apps">
+                <span class="menu-title">Gestion des offres de voyage</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-airplane"></i>
+              </a>
+              <div class="collapse" id="apps">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="">Ajouter offres de voyage</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="">Liste des offres de voyage</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/Backoffice/newhotel">Ajouter Hôtel</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="">Liste des hôtels</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#sidebar-layouts" aria-expanded="false" aria-controls="sidebar-layouts">
+                <span class="menu-title">Gestion des restaurants</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-food"></i>
+              </a>
+              <div class="collapse" id="sidebar-layouts">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="">Ajouter restaurant</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="">Liste des restaurants</a></li>
+                 </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Gestion de location des voitures</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-car"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="">Ajouter voiture</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="">Liste des Voitures</a></li>
+                  
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-advanced" aria-expanded="false" aria-controls="ui-advanced">
+                <span class="menu-title">Gestion des reclamations</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-alert-box"></i>
+              </a>
+              <div class="collapse" id="ui-advanced">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="">Liste des reclamations</a></li>
+                    
+                </ul>
+              </div>
+            </li> 
+         
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                  <i class="mdi mdi-home"></i>
+                </span> Dashboard
+              </h3>
+              
+            </div>
+             {% block body %}
+        {% endblock body %}
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © trood 2022 . All rights reserved.</span>
+             </div>
+          </footer>
+           </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    
+{% block js %}
+    <script src="{{ asset('backoffice/assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{{ asset('backoffice/assets/vendors/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('backoffice/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ asset('backoffice/assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('backoffice/assets/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('backoffice/assets/js/misc.js') }}"></script>
+    <script src="{{ asset('backoffice/assets/js/settings.js') }}"></script>
+    <script src="{{ asset('backoffice/assets/js/todolist.js') }}"></script>
+    <script src="{{ asset('backoffice/assets/js/jquery.cookie.js') }}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{{ asset('backoffice/assets/js/dashboard.js') }}"></script>
+    {% endblock %}
+    <!-- End custom js for this page -->
+  </body>
+
+<!-- Mirrored from www.bootstrapdash.com/demo/purple/jquery/template/demo_1/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Feb 2022 20:35:50 GMT -->
+</html>

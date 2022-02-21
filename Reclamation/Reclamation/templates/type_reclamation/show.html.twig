@@ -1,0 +1,26 @@
+{% extends 'basedashboard.html.twig' %}
+
+{% block title %}TypeReclamation{% endblock %}
+
+{% block body %}
+    <h1>TypeReclamation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ type_reclamation.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ type_reclamation.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a  class="badge badge-success" href="{{ path('type_reclamation_index') }}">Liste des types</a>
+
+    <a  class="badge badge-success" href="{{ path('type_reclamation_edit', {'id': type_reclamation.id}) }}">modifier</a>
+
+    {{ include('type_reclamation/_delete_form.html.twig') }}
+{% endblock %}
