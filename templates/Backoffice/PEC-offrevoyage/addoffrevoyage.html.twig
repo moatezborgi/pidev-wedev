@@ -1,0 +1,35 @@
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Ajouter Offre voyage{% endblock %}
+{% block body %}
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+{{ form_widget(form) }}
+
+<input type="button" id="add_more_offre" class="btn btn-gradient-primary mr-2" value="Ajouter des images"/>
+     {% if app.request.attributes.get('_route') == 'edit_offre' %}
+        <h2>Images</h2>
+                    <div style="display:flex">
+
+        {% for images in image  %}
+            <div>
+                <img src="{{ asset('/images/' ~ images.image) }}" alt="Image" width="150">
+                <a href="{{ path('hotel_delete_image', {id: images.codeImage}) }}" data-delete data-token="{{ csrf_token('delete' ~ images.codeImage) }}">Supprimer</a>
+
+             </div>
+        {% endfor %}
+                    </div>
+
+ 
+    {% endif %}
+        {% if app.request.attributes.get('_route') == 'edit_offre' %}
+         <button type="submit" class="btn btn-gradient-primary mr-2">Modifier</button>
+
+               {% else %}
+ <button type="submit" class="btn btn-gradient-primary mr-2">Ajouter</button>
+     {% endif %}
+
+
+{{ form_end(form) }}
+ 
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Liste des Offres{% endblock %}
+ {% block body %}
+
+<div class="row">
+                  <div class="col-12">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                          <th>Réf</th>
+                          <th>Prix Offre</th>
+                          <th>N°Place</th>
+                           <th>Lieu départ</th>
+                          <th>Destination </th>
+                          <th>N°nuits</th>
+                          <th>N°jours</th>
+                          <th>Date aller</th>
+                          <th>Date retour</th>
+                          <th>Hotel</th>
+                
+
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {%  for offres in offre %}
+                        <tr>
+                          <td>{{offres.id}}</td>
+                          <td>{{offres.prix_offre}}</td>
+                          <td>{{offres.nb_place}}</td>
+                           <td>{{offres.lieu_depart}}</td>
+
+                          <td>{{offres.lieu_arrivee}}</td>
+                          <td>{{offres.nb_nuits}}</td>
+                          <td>{{offres.nb_jours}}</td>
+                          <td>{{offres.date_depart|date('Y-m-d')}}</td>
+                          <td>{{offres.date_retour|date('Y-m-d')}}</td>
+                          <td>{{offres.hotel.nomHotel}}</td>
+
+                    
+                           <td><!-- partial:index.partial.html -->
+   <div class="container_hover">
+    <div class="menu">
+      <div class="item">
+      <a href="/Backoffice/editoffre/{{  offres.id }}">
+        <i class="fa fa-edit" aria-hidden="true" title="Modifier cette offre" >
+         </i>
+      </a>
+      </div>
+      <div class="item">
+      <a href="/Backoffice/deloffre/{{  offres.id }}"
+onclick="return confirm('Etesvous sûr de supprimer cet hôtel?');">
+        <i class="fa fa-trash" aria-hidden="true" title="Supprimer cette offre"></i>
+         </a>
+       </div>
+    
+     
+      </div>
+      </div>
+      </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+ {% endblock %}

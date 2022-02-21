@@ -1,0 +1,56 @@
+{% extends 'basefront.html.twig' %}
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Booking</title>
+<link href="{{ asset('frontoffice/css/style.css') }}" rel="stylesheet">
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700,900" rel="stylesheet">
+</head>
+<body>
+
+
+
+<div class="container1">
+                          {%  for offres in offre %}
+
+<div class="container-time">
+<h2 class="heading">{{offres.lieu_depart}} - {{offres.lieu_arrivee}}</h2>
+<h3 class="heading-days"> {{offres.nb_jours}}J/ {{offres.nb_nuits}} N </h3>
+<p>à seulement {{offres.prix_offre}} TTC</p>
+<p>{{offres.descriptions}} </p>
+ 
+
+<h3 class="heading-days">{{offres.date_depart|date('Y-m-d')}}</h3>
+<h3 class="heading-days">{{offres.date_retour|date('Y-m-d')}}</h3>
+ 
+
+<hr>
+ <h4 class="heading-phone">Appelez nous:9999999</h4>
+ </div>
+{% endfor %}
+<div class="container-form">
+{{ form_start(form, {'attr': {'novalidate': 'novalidate','id':'add_chamb'}}) }}
+{{form_widget(form)}}
+ {% if app.request.attributes.get('_route') == 'editreservation' %}
+         <button type="submit" class="btn">Modifier</button>
+
+               {% else %}
+ <button type="submit" class="btn">Reservez</button>
+     {% endif %}
+{{form_end(form)}}
+
+</div>
+
+</div>
+
+
+</body>
+</html>
+
+{% endblock %}

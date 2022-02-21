@@ -1,0 +1,55 @@
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Liste des chambres{% endblock %}
+ {% block body %}
+
+<div class="row">
+                  <div class="col-12">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                          <th>N°chambre</th>
+                          <th>Type chambre</th>
+                          <th>N°lits</th>
+                          <th>État</th>
+                          <th>Vue</th>
+                          <th>Prix nuit</th>                       
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {%  for chamb in chambres %}
+                        <tr>
+                          <td>{{chamb.numChambre}}</td>
+                          <td>{{chamb.typeChambre}}</td>
+                          <td>{{chamb.nbLit}}</td>
+                          <td>{{chamb.disponibilite}}</td>
+                          <td>{{chamb.prixNuit}}</td>
+                    
+                           <td><!-- partial:index.partial.html -->
+   <div class="container_hover">
+    <div class="menu">
+      <div class="item">
+      <a href="/Backoffice/editchambre/{{ chamb.numChambre }}">
+        <i class="fa fa-edit" aria-hidden="true" title="Modifier cet chambre" >
+         </i>
+      </a>
+      </div>
+      <div class="item">
+      <a href="/Backoffice/delchambre/{{chamb.numChambre }}"
+onclick="return confirm('Etesvous sûr de supprimer cette chambre?');">
+        <i class="fa fa-trash" aria-hidden="true" title="Supprimer cette chambre"></i>
+         </a>
+       </div>
+    
+      </div>
+      </div>
+      </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+ {% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Liste des hôtels{% endblock %}
+ {% block body %}
+
+<div class="row">
+                  <div class="col-12">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                          <th>Nom</th>
+                          <th>Prénom</th>
+                          <th>N°personne</th>
+                          <th>Tel</th>
+ 
+                      
+
+
+                          <th>Action</th>
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {%  for reserv in reser %}
+                        <tr>
+                          <td>{{reserv.Nom}}</td>
+                          <td>{{reserv.Prenom}}</td>
+                           <td>{{reserv.nb_perso}}</td>
+                         <td>{{reserv.tel}}</td>
+
+ 
+                          
+
+                    
+                           <td><!-- partial:index.partial.html -->
+   <div class="container_hover">
+    <div class="menu">
+     
+      <div class="item">
+      <a href="/Backoffice/delreser/{{  reserv.id }}"
+onclick="return confirm('Etesvous sûr de supprimer cette reservation?');">
+        <i class="fa fa-trash" aria-hidden="true" title="Supprimer cette reservation"></i>
+         </a>
+       </div>
+    
+   
+      </div>
+      </div>
+      </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+ {% endblock %}
