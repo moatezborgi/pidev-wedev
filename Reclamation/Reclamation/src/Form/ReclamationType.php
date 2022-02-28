@@ -9,6 +9,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
+
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ReclamationType extends AbstractType
 {
@@ -18,10 +21,13 @@ class ReclamationType extends AbstractType
             ->add('TypeReclamation', EntityType::class, [
                 'class' => TypeReclamation::class,
                 'choice_label' => 'type'
-
             ])
             ->add('description')
-            ->add('etat')
+            ->add('etat',ChoiceType::class,[
+                'choices'  => [
+                    'traité' => true,
+                    'encourss' => false,
+                ],            ])
             ->add('count')
             ->add('remboursement');
     }

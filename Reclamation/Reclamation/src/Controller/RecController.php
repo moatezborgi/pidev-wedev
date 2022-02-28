@@ -4,12 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Reclamation;
 use App\Form\ReclamationType;
+use App\Repository\HotelRepository;
+use App\Repository\MaisonRepository;
 use App\Repository\ReclamationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
+
 
 /**
  * @Route("/rec")
@@ -39,7 +45,7 @@ class RecController extends AbstractController
             $entityManager->persist($reclamation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('rec_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('rec/new.html.twig', [
@@ -89,5 +95,75 @@ class RecController extends AbstractController
         }
 
         return $this->redirectToRoute('rec_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @param ReclamationRepository $repository
+     * @return Response
+     * @Route ("tri",name="tri")
+     */
+    function OrderByPrice(ReclamationRepository  $repository){
+        $reclamations=$repository->OrderByPrice();
+        return $this->render("rec/index.html.twig",['reclamations'=>$reclamations]);
+    }
+    /**
+     * @Route("imp", name="impr")
+     */
+    public function imprimeproduit(ReclamationRepository $repository): Response
+
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        $reclamations = $repository->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('rec/pdf.html.twig', [
+            'reclamations' => $reclamations,
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("Liste  Reclamation.pdf", [
+            "Attachment" => true
+        ]);
+
+    }
+
+    /**
+     * @Route("statistiques",name="statistiquesRec")
+     * @param ReclamationRepository $repository
+     * @return Response
+     */
+
+    public function statistiques(ReclamationRepository $repository)
+    {
+
+        $nbs = $repository->getART();
+        $data = [['rate', 'Reclamation']];
+        foreach($nbs as $nb)
+        {
+            $data[] = array($nb['typeRec'], $nb['rec']);
+        }
+        $bar = new barchart();
+        $bar->getData()->setArrayToDataTable(
+            $data
+        );
+
+        $bar->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar->getOptions()->getTitleTextStyle()->setFontSize(50);
+        return $this->render('rec/statistique.html.twig', array('barchart' => $bar,'nbs' => $nbs));
+
     }
 }

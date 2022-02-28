@@ -47,4 +47,25 @@ class ReclamationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function OrderByPrice()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('select m from App\Entity\Reclamation m order by m.id DESC');
+        return $query->getResult();
+    }
+
+    public function getART()
+    {
+
+        $qb = $this->createQueryBuilder('v')
+            ->select('COUNT(v.id) AS rec, SUBSTRING(v.id, 1, 100000) AS typeRec')
+            ->groupBy('typeRec');
+        return $qb->getQuery()
+            ->getResult();
+
+    }
+
+
+
 }

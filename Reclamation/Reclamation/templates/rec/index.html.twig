@@ -7,17 +7,17 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Etat</th>
-                <th>Count</th>
-                <th>Type Reclamation</th>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>Count</th>
+            <th>Type Reclamation</th>
 
-                <th>Remboursement</th>
+            <th>Remboursement</th>
 
-                <th>actions</th>
-            </tr>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for reclamation in reclamations %}
@@ -26,13 +26,14 @@
                 <td>{{ reclamation.description }}</td>
                 <td>{{ reclamation.etat }}</td>
                 <td>{{ reclamation.count }}</td>
-                    <td>{{ reclamation.TypeReclamation.type }}</td>
+                <td>{{ reclamation.TypeReclamation.type }}</td>
                 <td>{{ reclamation.remboursement ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('rec_show', {'id': reclamation.id}) }}">show</a>
-                    <a href="{{ path('rec_edit', {'id': reclamation.id}) }}">edit</a>
+                    <a href="{{ path('rec_show', {'id': reclamation.id}) }}">Afficher</a>
+                    <a href="{{ path('rec_edit', {'id': reclamation.id}) }}">Modifier</a>
                 </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
@@ -40,6 +41,20 @@
         {% endfor %}
         </tbody>
     </table>
+    <a href="{{ path('type_reclamation_new') }}">Type Reclamation</a>
+    <br>
+    <a href="{{ path('rec_new') }}">Ajouter Reclamation</a>
+    <form action="{{ path('tri') }}" style="padding-left: 80px">
+        <input class="btn btn-success"
+               type="submit" value="tri">
+    </form>
 
-  <!--  <a href="{{ path('rec_new') }}">Create new</a>-->
+    <form style=" margin-left:  80px"  method="post" action="{{ path('statistiquesRec') }}">
+        <input class="btn btn-success" type="submit" value="Statistiques">
+    </form>
+
+    <form method="post" action="{{ path('impr') }}" style="padding-left: 80px">
+        <input type="submit" value="Imprimer " class="btn btn-success">
+    </form>
+
 {% endblock %}

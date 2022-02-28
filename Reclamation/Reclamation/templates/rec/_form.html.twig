@@ -1,3 +1,26 @@
 {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
+<button class="btn">{{ button_label|default('Envoyer') }}</button>
+
+<table >
+    <tr>
+        <td>{{ form_errors(form.description) }}</td>
+        <td>{{ form_label(form.description,"Description : ") }}</td>
+        <td>{{ form_widget(form.description) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_errors(form.etat) }}</td>
+        <td>{{ form_label(form.etat,"L'etat : ") }}</td>
+        <td>{{ form_widget(form.etat) }}</td>
+    </tr>
+        <tr>
+            <td>{{ form_errors(form.count) }}</td>
+            <td>{{ form_label(form.count," Telephone") }}</td>
+            <td>{{ form_widget(form.count) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_errors(form.remboursement) }}</td>
+            <td>{{ form_label(form.remboursement,"Remboursement") }}</td>
+            <td>{{ form_widget(form.remboursement) }}</td>
+        </tr>
+</table>
 {{ form_end(form) }}
