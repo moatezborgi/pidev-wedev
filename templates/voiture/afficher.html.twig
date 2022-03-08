@@ -1,0 +1,59 @@
+
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Liste des voitures{% endblock %}
+ {% block body %}
+
+     <div class="row">
+         <div class="col-12">
+             <table id="order-listing" class="table">
+                 <thead>
+                 <tr>
+                     <th>matricule</th>
+                     <th>couleur</th>
+                     <th>marque</th>
+                     <th>categorie</th>
+                     <th>disponibilite</th>
+                     <th>prixparheure</th>
+                     <th>nbrdeplace</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 {%  for voiture in voitures %}
+                     <tr>
+                         <td>{{ voiture.Matricule }}</td>
+                         <td>{{ voiture.Couleur }}</td>
+                         <td>{{ voiture.marque }}</td>
+                         <td>{{ voiture.Categorie }}</td>
+                         <td>{{ voiture.Disponibilite }}</td>
+                         <td>{{ voiture.prixparheure }}</td>
+                         <td>{{ voiture.Nbrdeplace }}</td>
+
+                         <td><!-- partial:index.partial.html -->
+                             <div class="container_hover">
+                                 <div class="menu">
+                                     <div class="item">
+                                         <a href="/modifiervoiture/{{ voiture.Matricule }}">
+                                             <i class="fa fa-edit" aria-hidden="true" title="Modifier cette voiture" >
+                                             </i>
+                                         </a>
+                                     </div>
+                                     <div class="item">
+                                         <a href="/supprimervoiture/{{voiture.Matricule }}"
+                                            onclick="return confirm('Etesvous sûr de supprimer cette voiture?');">
+                                             <i class="fa fa-trash" aria-hidden="true" title="Supprimer cette  VOITURE"></i>
+                                         </a>
+                                     </div>
+
+                                 </div>
+                             </div>
+                         </td>
+                     </tr>
+                 {% endfor %}
+                 </tbody>
+             </table>
+         </div>
+     </div>
+     </div>
+     </div>
+
+ {% endblock %}

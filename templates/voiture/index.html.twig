@@ -1,0 +1,14 @@
+{% extends 'basedashboard.html.twig' %}
+
+{% block title %}Hello Voiture{% endblock %}
+
+{% block body %}
+    <center>
+    <centrt>
+    <a href="{{ path('listevoiture') }}" class="btn btn-info "target="_blank">afficher la liste des voitures  </a>
+        <a href="{{ path('create_voiture') }}" class="btn btn-info "target="_blank">ajouter une voiture</a>
+        <a href="{{ path('contrat_index') }}" class="btn btn-info "target="_blank">la liste des contrat</a>
+    </centrt>
+    </center>
+
+{% endblock %}

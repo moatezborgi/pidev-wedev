@@ -1,0 +1,7 @@
+yamilovs_sms:
+    providers:
+        sms_ru_provider_doc:
+            sms_ru:
+                api_id: '98EAB6D0-0AFB-2A68-984D-189FAFC96105'
+                from: +21699320437
+                test: true

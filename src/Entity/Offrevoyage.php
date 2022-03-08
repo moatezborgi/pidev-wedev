@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\OffrevoyageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=OffrevoyageRepository::class)
@@ -16,12 +18,16 @@ class Offrevoyage
      * @ORM\Id
 
      * @ORM\Column(type="string", length=255)
+                    * @Groups ("post:read")
+
      */
     private $id;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank(message="Champ requis")
+                    * @Groups ("post:read")
+
      * 
      */
     private $prix_offre;
@@ -29,53 +35,70 @@ class Offrevoyage
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Champ requis")
+                    * @Groups ("post:read")
+
      */
     private $nb_place;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Champ requis")
+                    * @Groups ("post:read")
+
      */
     private $descriptions;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Champ requis")
+                    * @Groups ("post:read")
+
      */
     private $lieu_depart;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Champ requis")
+                    * @Groups ("post:read")
+
      */
     private $lieu_arrivee;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Champ requis")
+               * @Groups ("post:read")
+
      */
     private $nb_nuits;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Champ requis")
+               * @Groups ("post:read")
+
      */
     private $nb_jours;
 
     /**
-     * @ORM\Column(type="date")
- * @Assert\GreaterThan("today")
+               * @Groups ("post:read")
 
+        * @ORM\Column(type="date", nullable=true)
+     * @Assert\GreaterThan("today")
+     * @Assert\Date
      */
     private $date_depart;
 
     /**
      * @ORM\Column(type="date")
+          * @Groups ("post:read")
 
      */
     private $date_retour;
 
     /**
+           * @Groups ("post:read")
+
      * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="offrevoyages")
      */
     private $hotel;

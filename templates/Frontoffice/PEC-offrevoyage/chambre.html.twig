@@ -1,0 +1,67 @@
+ {% extends 'basefront.html.twig' %}
+ {% block body %}
+ 
+  <link href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap" rel="stylesheet') }}">
+<link rel="stylesheet" href="{{ asset('frontoffice/cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontoffice/dist/css/main75b514bb.minfd20.css?v=44610.6228704') }}" type="text/css">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+
+
+<section>
+  <div class="container"> {%  for chambre in chambres %}
+
+                            <div class="col-md-4 col-sm-6">
+     
+      
+                                <div class="thinn-tours-grid2 mb-30">
+          <div class="card h-100 hotels-list-item">
+  
+            {%  for images in image %}
+                 {% if images.referHotel == chambre.numChambre   %}
+
+                                     
+            <img style="width:30%" src="{{ asset('/images/' ~ images.image) }}" class="card-img-top img-fluid lazyload" data-src="{{ asset('/images/' ~ images.image) }}" >
+            {% endif %}
+                 {% endfor %}
+            <div class="card-body">
+               <h3 class="text-capitalize">                      
+                <a href="">{{chambre.typeChambre}}</a>
+                  
+              </h3>
+              <p class="card-text"> Vue  {{ chambre.vueChambre }}</p>  
+              
+              
+            </div>
+            <div class="card-footer border-0 bg-transparent">
+              <div class="d-flex justify-content-between mb-2">
+                <div class="align-self-center">
+                  
+                    <div> <span class="fs-6"> </span><span class="fs-4 font-weight-600"> 
+                    
+                      {{ chambre.prixNuit }} TND
+                     </div> 
+                  
+                </div>
+                <div  class="align-self-center">
+                  <a class="btn btn-primary"  href="">Réserver</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+ <script src="{{ asset('ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('dist/js/pack.v59b4adb7cb.minfd20.js?v=44610.6228704') }}" async></script>
+<script src="{{ asset('dist/js/pack.v33b4adb7cb.minfd20.js?v=44610.6228704') }}"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+
+
+
+ {% endblock %}

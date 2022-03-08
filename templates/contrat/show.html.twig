@@ -1,0 +1,36 @@
+{% extends 'basefront.html.twig' %}
+{% block title %}Contrat{% endblock %}
+
+{% block body %}
+    <h1>Contrat</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ Contrat.id }}</td>
+        </tr>
+        <tr>
+            <th>Datedebut</th>
+            <td>{{ Contrat.datedebut ? Contrat.datedebut|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Dateretour</th>
+            <td>{{ Contrat.dateretour ? Contrat.dateretour|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Matricule</th></th>
+            <td>{{ Contrat.voiture }}</td>
+
+        </tr>
+        <tr>
+            <th>Prixlocation</th></th>
+            <td>{{ Contrat.voiturealouer }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

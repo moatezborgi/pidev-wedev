@@ -1,0 +1,50 @@
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Liste des Reservations{% endblock %}
+ {% block body %}
+
+<div class="row">
+                  <div class="col-12">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                          <th>Nom</th>
+                          <th>Prenom</th>
+                          <th>Date de reservation</th>
+                          <th>time</th>
+                          <th>nombre de personnes</th>
+                          <th>telephone</th>
+                          <th>restaurant</th>
+  
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {%  for Reservations in reserver %}
+                        <tr>
+                          <td>{{Reservations.nom}}</td>
+                          <td>{{Reservations.prenom}}</td>
+                          <td>{{Reservations.date_reservation|date('Y-m-d')}}</td>
+                          <td>{{Reservations.time|date('HH:i')}}</td>
+                          <td>{{Reservations.nb_perso}}</td>
+                          <td>{{Reservations.telephone}}</td>
+                          <td>{{Reservations.refer_resto}}</td>
+
+                           
+ 
+
+                         
+                          <td>
+                         <a class="btn btn-outline-primary" href="/restaurant/editreservation/{{Reservations.id}}">modifier</a>
+                          <a class="btn btn-outline-primary" href="/restaurant/delreservation/{{Reservations.id}}">Supprimer</a>
+
+ 
+                           </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+ {% endblock %}

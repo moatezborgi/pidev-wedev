@@ -1,0 +1,37 @@
+{% extends 'basefront.html.twig' %}
+
+
+
+ {% block body %}
+     {% block title %}Liste des voitures {% endblock %}
+     <div class="row">
+         <div class="col-12">
+             <table id="order-listing" class="table">
+                 <thead>
+                 <tr>
+                     <th>matricule</th>
+                     <th>couleur</th>
+                     <th>categorie</th>
+                     <th>disponibilite</th>
+                     <th>ptixparheure</th>
+                     <th>nbrdeplace</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 {% for voiture in voitures %}
+                     <tr>
+                         <td>{{ voiture.Matricule }}</td>
+                         <td>{{ voiture.Couleur }}</td>
+                         <td>{{ voiture.Categorie }}</td>
+                         <td>{{ voiture.Disponibilite }}</td>
+                         <td>{{ voiture.prixparheure }}</td>
+                        <td>{{ voiture.Nbrdeplace }}</td>
+
+                     </tr>
+                 {% endfor %}
+
+                 </tbody>
+             </table>
+         </div>
+     </div>
+ {% endblock %}

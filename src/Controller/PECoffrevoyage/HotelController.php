@@ -20,10 +20,19 @@ use Symfony\Component\Process\Process;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Serializer;
+
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 use App\Repository\ImageHotelRepository;
 use PHPUnit\Runner\Hook;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Yamilovs\Bundle\SmsBundle\Service\ProviderManager;
+
+use Yamilovs\Bundle\SmsBundle\Sms\Sms;
 class HotelController extends AbstractController
 
 {
@@ -47,13 +56,13 @@ public function new(Request $request) {
         $image->move($uploaddir,$fichier_name);
         $image_hotel=new ImageHotel();
         $image_hotel->setImage("/".$fichier_name);
-        $image_hotel->setReferHotel("Refhôtel".$hotel->getId());
+        $image_hotel->setReferHotel("Refhotel".$hotel->getId());
         $entityManager->persist($image_hotel);
       }
       
       
         $hotel = $form->getData();
-        $hotel->setId("Refhôtel".$hotel->getId());
+        $hotel->setId("Refhotel".$hotel->getId());
   
         $entityManager->persist($hotel);
         $entityManager->flush();
@@ -306,4 +315,51 @@ public function editchambre(Request $request, $id) {
 }
 
 
+    /**
+     * @Route("/Frontoffice/listhotelfront", name="listhotelfront")
+     */
+
+    public function liste_hotelfront()
+    {
+      $hotel= $this->getDoctrine()->getRepository(Hotel::class)->findAll();
+      
+      $image = $this->getDoctrine()->getRepository(ImageHotel::class)->findAll(array('distinct' => true));
+ 
+      return $this->render('Frontoffice/PEC-offrevoyage/hotel.html.twig',['hotel'=>$hotel,'image'=>$image]);      
+    }
+     /**
+ * @Route("/Frontoffice/listechambre/{id}", name="listechambrefront")
+ 
+     */
+
+    public function liste_chambrefront($id)
+    {
+      $chambre= $this->getDoctrine()->getRepository(Chambre::class)->findBy(array('referHotel' => $id));
+      $image = $this->getDoctrine()->getRepository(ImageHotel::class)->findAll(array('distinct' => true));
+
+      return $this->render('Frontoffice/PEC-offrevoyage/chambre.html.twig',['chambres'=> $chambre,'image'=>$image]);
+      
+    }
+
+
+    
+       /**
+ * @Route("/mobile/listhotel", name="listhotelmobile")
+     */
+
+    public function mobileliste_hotel(Request $request ,NormalizerInterface $Normalizer)
+    {
+      $hotel= $this->getDoctrine()->getRepository(Hotel::class)->findAll();
+      
+  
+      $jsonContent = $Normalizer->normalize($hotel, 'json',['groups'=>'post:read']);
+
+
+      $response = new Response(json_encode($jsonContent));
+      $response->headers->set('Content-Type', 'application/json; charset=UTF-8');
+
+      return $response;
+
+    }
+      
 }

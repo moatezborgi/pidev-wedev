@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -12,15 +13,17 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="hotel")
  * @ORM\Entity
+ 
  */
 class Hotel
 {
     /**
      * @var string
-     *
-     * @ORM\Column(name="id", type="string", length=50, nullable=false)
+      * @ORM\Column(name="id", type="string", length=50, nullable=false)
      * @Assert\NotBlank(message="Champ requis")
      * @ORM\Id
+    * @Groups("post:read")
+
      */
     private $id;
 
@@ -29,14 +32,19 @@ class Hotel
      *
      * @ORM\Column(name="nom_hotel", type="string", length=200, nullable=true)
      * @Assert\NotBlank(message="Champ requis")
+     * @Groups("post:read")
+
      */
     private $nomHotel;
 
     /**
      * @var string|null
      *
+
      * @ORM\Column(name="ville_hotel", type="string", length=200, nullable=true)
      * @Assert\NotBlank(message="Champ requis")
+               * @Groups("post:read")
+
      */
     private $villeHotel;
 
@@ -45,12 +53,15 @@ class Hotel
      *
      * @ORM\Column(name="nb_etoile", type="integer", nullable=true)
      * @Assert\NotBlank(message="Champ requis")
+          * @Groups("post:read")
+
      */
     private $nbEtoile;
 
     /**
      * @ORM\OneToMany(targetEntity=Offrevoyage::class, mappedBy="hotel")
-     * 
+ 
+ 
      */
     private $offrevoyages;
 

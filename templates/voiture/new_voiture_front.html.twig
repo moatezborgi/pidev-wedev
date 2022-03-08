@@ -1,0 +1,14 @@
+
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Ajouter voiture {% endblock %}
+{% block body %}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+
+    <button  class="form-control">ajouter voiture</button>
+
+
+    {{ form_end(form) }}
+
+
+{% endblock %}

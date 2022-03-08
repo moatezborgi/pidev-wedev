@@ -1,0 +1,48 @@
+
+{% extends 'basedashboard.html.twig' %}
+
+
+{% block body %}
+    <h1>Modifier une voiture:</h1>
+<center>
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <div>
+        {{form_label(form.Matricule)}}
+        {{ form_widget(form.Matricule, {'attr':{'placeholder':'Matricule de la voiture'}}) }}
+    </div>
+    <div>
+        {{form_label(form.Categorie)}}
+        {{ form_widget(form.Categorie, {'attr':{'placeholder':'Marque de la voiture'}}) }}
+
+    </div>
+    <div>
+        {{form_label(form.Couleur)}}
+        {{ form_widget(form.Couleur, {'attr':{'placeholder':'Couleur de la voiture'}}) }}
+    </div>
+    <div>
+        {{form_label(form.Carburant)}}
+        {{ form_widget(form.Carburant, {'attr':{'placeholder':'Carburant de la voiture'}}) }}
+    </div>
+    <div>
+        {{form_label(form.prixparheure)}}
+        {{ form_widget(form.prixparheure, {'attr':{'placeholder':'prix de la voiture '}}) }}
+    </div>
+     <div>
+        {{form_label(form.marque)}}
+        {{ form_widget(form.marque, {'attr':{'placeholder':'marque de la voiture '}}) }}
+    </div>
+    <div>
+        <div>
+            {{form_label(form.DateDeMiseEnCirculation)}}
+            {{form_widget(form.DateDeMiseEnCirculation)}}
+        </div>
+        {{form_label(form.NbrdePlace)}}
+        {{ form_widget(form.NbrdePlace, {'attr':{'placeholder':'Nombre de place'}}) }}
+    </div>
+
+    </div>
+    <div>
+        <input type="submit" name="" value="Enregistrer" class="btn btn-primary" />
+    </div>
+</center>
+{% endblock %}

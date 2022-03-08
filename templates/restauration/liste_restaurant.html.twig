@@ -1,0 +1,52 @@
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Liste des restaurants{% endblock %}
+ {% block body %}
+
+<div class="row">
+                  <div class="col-12">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                          <th>Réference Restaurant</th>
+                          <th>Nom Restaurant</th>
+                          <th>Address restaurant</th>
+                          <th>Tel</th>
+                          <th>nbEtoile</th>
+                          <th>Categorie</th>
+                          <th>Action</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {%  for restos in resto %}
+                        <tr>
+                          <td>{{restos.referResto}}</td>
+                          <td>{{restos.nomResto}}</td>
+                          <td>{{restos.adresseResto}}</td>
+                          <td>{{restos.tel}}</td>
+                          <td>{{restos.nbEtoile}}</td>
+ 
+ 
+
+                         
+                          <td>
+                         <a class="btn btn-outline-primary" href="/restaurant/editresto/{{restos.referResto}}">modifier</a>
+                         <form method="post"  action="{{ path('supresto',{'id': restos.referResto})}}" onsubmit="return confirm('Voulez vous supprimer ?')">
+                        <input type="hidden" name="_method" value="SUP">
+                        <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ restos.referResto)}}">
+                        <input type="submit" class="btn btn-outline-primary" value="supprimer">
+                    </form>
+                            <a href="/restaurant/newmenu/{{restos.referResto}}">Ajouter Plat</a>
+                         <a href="/restaurant/Listeplat/{{restos.referResto}}">Liste des Plat </a>
+
+                           </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+ {% endblock %}

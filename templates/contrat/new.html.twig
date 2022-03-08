@@ -1,0 +1,13 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}New Contrat{% endblock %}
+
+{% block body %}
+    <h1>Create new Contrat</h1>
+
+    <div style="margin-left: 350px">
+    {{ include('contrat/_form.html.twig') }}
+ 
+
+    <a href="{{ path('contrat_index') }}">back to list</a>
+{% endblock %}

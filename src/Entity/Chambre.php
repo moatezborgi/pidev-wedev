@@ -28,6 +28,17 @@ class Chambre
      *
      * @ORM\Column(name="type_chambre", type="string", length=20, nullable=true)
      * @Assert\NotBlank(message="Champ requis")
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *      message= "Il faut que le type soit alphabetique"
+     * )
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 20,
+     *      minMessage = "minmum {{ limit }} charactéres",
+     *      maxMessage = "maximum {{ limit }} charactéres"
+     * )
      */
     private $typeChambre;
 
@@ -161,4 +172,7 @@ class Chambre
     {
         $this->referHotel =$referHotel;
     }
+
+
+    
 }

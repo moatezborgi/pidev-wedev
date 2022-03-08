@@ -1,0 +1,57 @@
+                            {%  for restos in resto %}
+
+                            <div class="col-md-4 col-sm-6">
+
+
+                                <!-- HOLIDAY PACKAGES START -->
+
+
+                                <div class="thinn-tours-grid2 mb-30">
+
+                                
+                
+
+
+                                    <figure>
+                                   {%  for images in image %}
+                                     {% if images.referResto == restos.referResto  %}
+                                
+
+                                        <img src="{{ asset('/images/' ~ images.image) }}" alt=""/>
+                                     {% endif %}
+
+                        
+
+                                     {% endfor %}
+
+
+                                    </figure>
+
+
+                                    <div class="text">
+
+                                        <h5 class="title"><a href="/restaurant/detail_restaurantfront/{{restos.referResto}}">{{restos.nomResto}}</a></h5>
+ 
+
+                               <span class="location-tag">{{restos.adresseResto}}</span>
+                              <span class="location-tag">{{restos.tel}}</span>
+                             <span class="location-tag"> {% for d in 1..restos.nbEtoile %}<i class="fa fa-star"></i>{%  endfor %}</span>
+
+
+
+ 
+
+                                        <a href="/restaurant/detail_restaurantfront/{{restos.referResto}}" class="btn">View detail</a>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <!-- HOLIDAY PACKAGES END -->
+
+
+                            </div>
+                            {% endfor %}

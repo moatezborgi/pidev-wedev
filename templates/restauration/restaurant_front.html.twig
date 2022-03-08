@@ -1,0 +1,215 @@
+{% extends 'basefront.html.twig' %}
+
+{% block body %}
+    <!-- Bootstrap -->
+        <!-- Bootstrap -->
+        <link rel="shortcut icon" href="{{ asset('assets_front/images/favicon/favicon.png') }}">
+
+
+        <link rel="apple-touch-icon" href="{{ asset('assets_front/images/favicon/apple-touch-icon.png') }}">
+
+
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets_front/images/favicon/apple-touch-icon-72x72.png') }}">
+
+
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets_front/images/favicon/apple-touch-icon-114x114.png') }}">
+
+
+        <link rel="icon" sizes="192x192" href="{{ asset('assets_front/images/favicon/icon-192x192.png') }}">
+
+        <link href="{{ asset('assets_front/css/bootstrap.css') }}" rel="stylesheet">
+
+
+        <!-- Animate CSS -->
+        <link href="{{ asset('assets_front/css/plugins.css') }}"  media="all" rel="stylesheet" type="text/css">
+
+
+        <link href="{{ asset('assets_front/css/animate.css') }}"  rel="stylesheet">
+
+
+        <!-- Magnific Popup CSS -->
+
+
+        <link href="{{ asset('assets_front/css/magnific-popup.css') }}" rel="stylesheet">
+
+
+        <!-- Slick Slider CSS -->
+
+
+        <link href="{{ asset('assets_front/css/slick.css') }}" rel="stylesheet">
+
+
+        <!-- Date Picker CSS -->
+
+
+        <link href="{{ asset('assets_front/css/daterangepicker.css') }}" rel="stylesheet">
+
+
+        <!-- Typography CSS -->
+
+
+        <link href="{{ asset('assets_front/css/typography.css') }}" rel="stylesheet">   
+
+
+        <!-- Flat Icon CSS -->
+
+
+        <link href="svg/svg.css" rel="stylesheet">
+
+
+        <!-- Short Code CSS -->
+
+
+        <link href="{{ asset('assets_front/css/shortcode.css') }}" rel="stylesheet">
+
+
+        <!-- Widget Css -->
+
+
+        <link href="{{ asset('assets_front/css/widget.css') }}" rel="stylesheet">
+
+
+        <!--Dl Menu Script-->
+
+
+        <link href="{{ asset('assets_front/css/dl-menu/component.css') }}" rel="stylesheet">
+
+
+        <!-- Custom Style CSS -->
+
+
+        <link href="{{ asset('assets_front/style.css') }}" rel="stylesheet">
+
+        <link href="{{ asset('frontoffice/css/style.css') }}" rel="stylesheet">
+        <!-- Color CSS -->
+
+
+        <link href="{{ asset('assets_front/css/color.css') }}" rel="stylesheet">
+
+
+        <!-- Responsive CSS -->
+
+
+        <link href="{{ asset('assets_front/css/responsive.css') }}" rel="stylesheet">
+
+
+                <!-- Tours Section Start --> 
+
+
+                <section>
+
+
+                    <div class="container">
+                        <form action="#" class="nk-form nk-form-style-1" novalidate="novalidate">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Type something..." id="search">
+                                <button class="nk-btn nk-btn-color-main-1"><span class="ion-search"></span></button>
+                            </div>
+                        </form>
+
+                        <!-- SECTION HEADING END -->
+
+
+                        <div class="row" id="all">
+                            {% include 'restauration/restoajax.html.twig' %}
+                        </div>
+                        <div class"row" id="search">
+                        </div>
+                        </div>
+
+
+                                            
+              
+                </section>
+
+        <script src="{{ asset('assets_front/js/jquery.js') }}"></script>
+
+
+        <!-- bootstrap -->
+
+
+        <script src="{{ asset('assets_front/js/bootstrap.js') }}"></script>
+
+
+        <!-- Slick Slider -->
+
+
+        <script src="{{ asset('assets_front/js/slick.min.js') }}"></script>
+
+
+        <!-- Popup Js -->
+
+
+        <script src="{{ asset('assets_front/js/magnific-popup.js') }}"></script>
+
+
+        <!-- Dll Menu Js -->
+
+
+        <script src="{{ asset('assets_front/js/dl-menu/modernizr.custom.js') }}"></script>
+
+
+        <script src="{{ asset('assets_front/js/dl-menu/jquery.dlmenu.js') }}"></script>
+
+
+        <!-- Fontawesome Js -->
+
+
+        <script src="{{ asset('assets_front/js/fontawesome.js') }}"></script>
+
+
+        <!-- Date Picker -->
+
+
+        <script type="text/javascript" src="{{ asset('assets_front/js/moment.min.js') }}"></script>
+
+
+        <script type="text/javascript" src="{{ asset('assets_front/js/daterangepicker.min.js') }}"></script>
+
+
+        <!-- Map Api Library -->
+
+
+ 
+
+        <!-- Google Map Js -->
+
+
+        <script src="{{ asset('assets_front/js/gmap3.min.js') }}"></script>
+
+
+        <!-- Input Number Js -->
+
+
+        <script src="{{ asset('assets_front/js/input-number.js') }}"></script>
+
+
+<script>
+        $( document ).ready(function() {
+            var currentRequest = null;
+            $("#search").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte
+                afin d’effectuer la recherche */
+                var value = $(this).val();
+                if(currentRequest != null) {
+                    currentRequest.abort();
+                }
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est
+                « search » pour faire la recherche */
+                currentRequest = $.ajax({
+                    url : "{{ path('ajax') }}",
+                    type : 'GET',
+                    data: {
+                        'searchValue' : value
+                    },
+                    success : function(retour)
+                    {
+                        $('#all').html(retour);
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+
+{% endblock %}

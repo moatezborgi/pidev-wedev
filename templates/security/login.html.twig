@@ -1,0 +1,127 @@
+ <html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Trood</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ asset('frontoffice/front/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('frontoffice/front/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+
+        <div class="card-body p-0">
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <form method="post">
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+
+                            <div class="form-group row">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1><br><br><br>
+                <label for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                <label for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required><br><br><br>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+                #}
+
+                <button class="btn btn-lg btn-primary" type="submit">
+                    Sign in
+                    <a href="{{path("Dashboard")}}" class="btn btn-success">
+                        <i class="bi bi-cart-x"></i>
+                    </a>
+                </button>
+
+                                <div class="text-center">
+                                    <a class="small" href="/mot-passe-oublie">Forgot Password?</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="/inscription">Already have an account? Login!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Bootstrap core JavaScript-->
+
+
+
+<script src="{{ asset('frontoffice/front/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ asset('frontoffice/front/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('frontoffice/front/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('frontoffice/front/js/sb-admin-2.min.js')}}"></script>
+
+</body>
+
+</html>

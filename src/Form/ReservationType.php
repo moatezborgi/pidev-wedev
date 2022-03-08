@@ -14,18 +14,11 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Nom',TextType::class,[
-                'attr'=>['placeholder'=>"Nom",'class'=>"form-control"
-            ]])
-            ->add('Prenom',TextType::class,[
-                'attr'=>['placeholder'=>"Prénom",'class'=>"form-control"
-            ]])
+          
             ->add('nb_perso',TextType::class,[
                 'attr'=>['placeholder'=>"N°personnes",'class'=>"form-control"
             ]])
-            ->add('tel',TextType::class,[
-                'attr'=>['placeholder'=>"Téléphone",'class'=>"form-control"
-            ]])
+          
         ;
     }
 

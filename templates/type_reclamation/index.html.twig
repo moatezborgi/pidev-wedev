@@ -1,0 +1,38 @@
+{% extends 'basedashboard.html.twig' %}
+
+ 
+{% block body %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" id="css-main" href={{ asset("assets/css/oneui.min.css") }}>
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
+    <h1>TypeReclamation </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center" style="width: 80px;">Id</th>
+                <th class="d-none d-sm-table-cell">Type</th>
+                <th class="d-none d-sm-table-cell">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_reclamation in type_reclamations %}
+            <tr>
+                <td class="text-muted font-size-sm">{{ type_reclamation.id }}</td>
+                <td class="text-muted font-size-sm">{{ type_reclamation.type }}</td>
+                <td class="text-muted font-size-sm">
+                    <a class="badge badge-info" href="{{ path('type_reclamation_show', {'id': type_reclamation.id}) }}">afficher</a>
+                    <a class="badge badge-info" href="{{ path('type_reclamation_edit', {'id': type_reclamation.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('type_reclamation_new') }}">Ajouter type reclamation</a>
+{% endblock %}

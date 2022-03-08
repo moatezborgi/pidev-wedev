@@ -1,0 +1,45 @@
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Liste des Plats{% endblock %}
+ {% block body %}
+
+<div class="row">
+                  <div class="col-12">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                    <th>Code  Plats</th>
+
+                          <th>Nom Plats</th>
+                          <th>description Plats</th>
+                          <th>Prix</th>
+  
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {%  for menu in menus %}
+                        <tr>
+                          <td>{{menu.codMenu}}</td>
+                          <td>{{menu.NomPlat}}</td>
+                          <td>{{menu.libPlat}}</td>
+                          <td>{{menu.prixPlat}}dt</td>
+
+                           
+ 
+
+                         
+                          <td>
+                         <a class="btn btn-outline-primary" href="/restaurant/editmenu/{{menu.codMenu}}">modifier</a>
+                        <a class="btn btn-outline-primary" href="/restaurant/delmenu/{{menu.codMenu}}">Supprimer</a>
+
+ 
+                           </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+ {% endblock %}

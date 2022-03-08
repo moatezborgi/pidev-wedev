@@ -1,0 +1,61 @@
+{% extends 'basedashboard.html.twig' %}
+
+{% block title %}Reclamation index{% endblock %}
+
+{% block body %}
+    <h1>Reclamation index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>telephone</th>
+            <th>Type Reclamation</th>
+
+            <th>Remboursement</th>
+            <th>Date</th>
+            <th>Déclarant</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.count }}</td>
+                <td>{{ reclamation.TypeReclamation.type }}</td>
+                <td>{{ reclamation.remboursement ? 'Yes' : 'No' }}</td>
+                <td>{{ reclamation.dateFac |date('d-m-Y')}}</td>
+                <td>{{ reclamation.login}}</td>
+
+                <td>
+                    <a href="{{ path('rec_show', {'id': reclamation.id}) }}">Afficher</a>
+                    <a href="{{ path('rec_edit', {'id': reclamation.id}) }}">Modifier</a>
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('type_reclamation_new') }}">Type Reclamation</a>
+    <br>
+     <form action="{{ path('tri') }}" style="padding-left: 80px">
+        <input class="btn btn-success"
+               type="submit" value="tri">
+    </form>
+
+    <form style=" margin-left:  80px"  method="post" action="{{ path('statistiquesRec') }}">
+        <input class="btn btn-success" type="submit" value="Statistiques">
+    </form>
+
+    <form method="post" action="{{ path('impr') }}" style="padding-left: 80px">
+        <input type="submit" value="Imprimer " class="btn btn-success">
+    </form>
+
+{% endblock %}

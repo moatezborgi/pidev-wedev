@@ -1,0 +1,18 @@
+{% extends 'basedashboard.html.twig' %}
+{% block title %}Ajouter Article{% endblock %}
+{% block body %}
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+{{ form_widget(form) }}
+
+ 
+  {% if app.request.attributes.get('_route') == 'editresto' %}
+         <button type="submit" class="btn btn-gradient-primary mr-2">Modifier</button>
+
+               {% else %}
+  
+ <button type="submit" class="btn btn-gradient-primary mr-2">Ajouter</button>
+     {% endif %}{{ form_end(form) }}
+ 
+
+{% endblock %}

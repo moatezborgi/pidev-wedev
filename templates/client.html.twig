@@ -1,0 +1,7 @@
+{% extends 'basefront.html.twig' %}
+{% block body %}
+    {% block title %}client  {% endblock %}
+    
+<a href="{{ path('listevoituredispo') }}" class="btn btn-info "target="_blank">afficher la liste des voitures  dispo  </a>
+<a href="{{ path('contrat_new') }}" class="btn btn-info "target="_blank">faire une location</a>
+{% endblock %}

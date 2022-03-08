@@ -1,0 +1,43 @@
+{% extends 'basedashboard.html.twig' %}
+
+{% block title %}Reclamation{% endblock %}
+
+{% block body %}
+    <h1>Reclamation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reclamation.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ reclamation.description }}</td>
+            </tr>
+            <tr>
+                <th>Count</th>
+                <td>{{ reclamation.count }}</td>
+            </tr>
+            <tr>
+                <th>Remboursement</th>
+                <td>{{ reclamation.remboursement ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Type Reclamation</th>
+                <td>{{ reclamation.TypeReclamation.type}}</td>
+            </tr>
+              <tr>
+                <th>Déclarant</th>
+                <td>{{ reclamation.login}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('rec_index') }}">back to list</a>
+
+    <a href="{{ path('rec_edit', {'id': reclamation.id}) }}">edit</a>
+
+    {{ include('rec/_delete_form.html.twig') }}
+
+{% endblock %}

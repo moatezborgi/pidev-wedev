@@ -21,7 +21,23 @@ public function home()
  */
 public function acceuil()
 {
-    return $this->render('basefront.html.twig');
+    return $this->render('acceuil.html.twig');
 
 }
+/**
+    * @Route("/Frontoffice/offrevoyage",name="home")
+ */
+public function acceuil1()
+{
+    return $this->render('acceuil.html.twig');
+
+}
+  /**
+     * @Route("/client", name="client")
+     */
+
+    public function client ()
+    {
+        return $this->render('client.html.twig');
+    }
 }

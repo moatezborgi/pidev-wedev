@@ -1,0 +1,15 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}New Contrat{% endblock %}
+
+{% block body %}
+    <h1>Create new Contrat</h1>
+    {% if nbjours==0 or datedebut>dateretour%}
+        <div class="alert alert-danger">{{ error}}</div>
+
+    {% endif %}
+
+    {{ include('Contrat/_form.html.twig') }}
+
+    <a href="{{ path('contrat_index') }}">back to list</a>
+{% endblock %}

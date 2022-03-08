@@ -1,0 +1,54 @@
+{% extends 'basefront.html.twig' %}
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Booking</title>
+<link href="{{ asset('frontoffice/css/style.css') }}" rel="stylesheet">
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700,900" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container1">
+<div class="container-time">
+<h2 class="heading">Time Open</h2>
+<h3 class="heading-days">Lundi-Vendredi</h3>
+<p>7am - 11am (petit déj)</p>
+<p>11am - 10pm (déjeuner/diner)</p>
+
+<h3 class="heading-days">Samedi et Dimanche</h3>
+<p>9am - 1am (petit déj)</p>
+<p>1am - 10pm (déjeuner/diner)</p>
+
+<hr>
+{%  for restos in resto %}
+<h4 class="heading-phone">Appelez nous:{{restos.tel}}</h4>
+{% endfor %}
+</div>
+
+<div class="container-form">
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{{form_widget(form)}}
+ {% if app.request.attributes.get('_route') == 'editreservation' %}
+         <button type="submit" class="btn">Modifier</button>
+
+               {% else %}
+ <button type="submit" class="btn">Reservez</button>
+     {% endif %}
+{{form_end(form)}}
+
+</div>
+
+</div>
+
+
+</body>
+</html>
+
+{% endblock %}

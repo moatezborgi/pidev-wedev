@@ -1,0 +1,40 @@
+{% extends 'basedashboard.html.twig' %}
+
+
+{% block title %}Contrat index{% endblock %}
+
+{% block body %}
+    <h1>Contrat index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Datedepart</th>
+            <th>Dateretour</th>
+            <th>Matricule</th>
+            <th>prix de la location </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for Contrat in contrats %}
+            <tr>
+                <td>{{ Contrat.id }}</td>
+                <td>{{ Contrat.Datedebut ? Contrat.Datedebut|date('Y-m-d') : '' }}</td>
+                <td>{{ Contrat.dateretour ? Contrat.dateretour|date('Y-m-d') : '' }}</td>
+                <td>{{ Contrat.voiturealouer }}</td>
+                <td>{{ Contrat.prixlocation }}</td>
+                <td> <a href="/edit/{{ Contrat.id }}">modifier </a>
+                <a href="/delete/{{ Contrat.id }}">supprimer </a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

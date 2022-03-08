@@ -19,33 +19,32 @@ class Reservation
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Champ requis")
-     */
+      */
     private $Nom;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Champ requis")
-     */
+      */
     private $Prenom;
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotBlank(message="Champ requis")
-     */
+      */
     private $nb_perso;
 
     /**
      * @ORM\Column(type="string", length=8)
-     * @Assert\NotBlank(message="Champ requis")
-    * @Assert\Length(min=8,max=8,minMessage="Ce champ doit contenir au moins 8 caractères",maxMessage="Ce champ doit contenir au plus 8 caractères")
-
+ 
      */
     private $tel;
     /**
      * @ORM\Column(type="string", length=50)
      */
     private $refer_offre;
+      /**
+     * @ORM\Column(type="string", length=255)
+      */
+      private $login;
 
 
     public function getId(): ?int
@@ -115,8 +114,25 @@ class Reservation
 
         return $this;
     }
-    public function __construct($refer_offre)
+    public function getLogin(): ?string
+    {
+        return $this->login;
+    }
+
+    public function setLogin(string $login): self
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+    public function __construct($refer_offre,$Nom,$Prenom,$tel,$login)
     {
         $this->refer_offre =$refer_offre;
+        $this->tel=$tel;
+        $this->Nom=$Nom;
+        $this->Prenom=$Prenom;
+        $this->login = $login;
+
+
     }
 }

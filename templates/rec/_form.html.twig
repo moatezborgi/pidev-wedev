@@ -1,0 +1,27 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<button class="btn">{{ button_label|default('Envoyer') }}</button>
+
+<table >
+    <tr>
+        <td>{{ form_errors(form.description) }}</td>
+        <td>{{ form_label(form.description,"Description : ") }}</td>
+        <td>{{ form_widget(form.description) }}</td>
+    </tr>
+
+        <tr>
+            <td>{{ form_errors(form.count) }}</td>
+            <td>{{ form_label(form.count," telephpne") }}</td>
+            <td>{{ form_widget(form.count) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_errors(form.remboursement) }}</td>
+            <td>{{ form_label(form.remboursement,"Remboursement") }}</td>
+            <td>{{ form_widget(form.remboursement) }}</td>
+        </tr>
+    <tr>
+        <td>{{ form_errors(form.dateFac) }}</td>
+        <td>{{ form_label(form.dateFac,"Date ") }}</td>
+        <td>{{ form_widget(form.dateFac) }}</td>
+    </tr>
+</table>
+{{ form_end(form) }}

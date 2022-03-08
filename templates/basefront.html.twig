@@ -17,6 +17,9 @@
         <link href="{{ asset('frontoffice/css/plugins.css') }}"  media="all" rel="stylesheet" type="text/css">
         <link href="{{ asset('frontoffice/css/style.css') }}" media="all" rel="stylesheet" type="text/css">
         <!-- style end -->
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
         <!-- google fonts start -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900%7CMontserrat:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" type=
             "text/css">
@@ -74,26 +77,56 @@
                         <!-- menu start -->
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="#home">Home</a>
+                                <a href="/Frontoffice/offrevoyage">Home</a>
+                            </li>
+                               <li>
+                                <a href="/Frontoffice/listhotelfront">Hôtels</a>
                             </li>
                             <li>
                                 <a href="/Frontoffice/listeoffrevoyage">Offre de voyage</a>
                             </li>
                             <li>
-                                <a href="#services">Restaurant</a>
+                                <a href="/restaurant/liste_restaurantfront">Restaurant</a>
                             </li>
-                            <li>
-                                <a href="#works">Menu</a>
+                               <li>
+                                <a href="/client">Location voitures</a>
                             </li>
-                            <li>
-                                <a href="#blank">Inside</a>
+                          
+                          
+                           
+                          
+                      {% if app.user and app.user.roles == ["ROLE_ADMIN"]%}
+
+   <li>
+                                <a href="/Backoffice/dashboard">Dashboard</a>
+ 
                             </li>
-                            <li>
-                                <a href="#blog">News</a>
+                            
+                      {% endif %}
+
+                      {% if app.user and app.user.email %}
+                        <li>
+                                <a href="/rec/new/{{app.user.login}}">Réclamation</a>
                             </li>
-                            <li>
-                                <a href="#contact">Contact</a>
+                                  <li>
+
+                                   <a href="{{ path('update_user') }}">{{ app.user.email }}</a>
+ 
+                     </li>
+                     <li>
+
+
+                                  <a href="/logout">Déconnexion</a>
+                        </li>
+               {% else %}
+
+   <li>
+                                <a href="/login">Connexion</a>
+ 
                             </li>
+                            
+                      {% endif %}
+
                         </ul>
                         <!-- menu end -->
                     </div>
@@ -440,6 +473,7 @@
         <script src="{{ asset('frontoffice/js/foodex-01.js') }}"></script>
         
         <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 
 
         <script src="{{ asset('assets_front/js/jquery.js') }}"></script>

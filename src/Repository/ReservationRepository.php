@@ -47,4 +47,16 @@ class ReservationRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getLastid($term)
+    {
+        $qb = $this->createQueryBuilder('v')
+        ->select('max(v.id) AS maxid')
+        ->andWhere('v.login = :searchTerm')
+        ->setParameter('searchTerm', $term);
+        
+     return $qb->getQuery()
+        ->getResult();
+  
+    
+    }
 }

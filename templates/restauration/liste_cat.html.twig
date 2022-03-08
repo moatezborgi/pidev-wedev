@@ -1,0 +1,40 @@
+{% extends 'basedashboard.html.twig' %}
+ {% block title %}Liste des Categorie{% endblock %}
+ {% block body %}
+
+<div class="row">
+                  <div class="col-12">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                          <th>Réference catégorie</th>
+                          <th>Libelle catégorie</th>
+                        
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {%  for cats in cat %}
+                        <tr>
+                          <td>{{cats.id}}</td>
+                          <td>{{cats.libCat}}</td>
+            
+                          <td>
+                         <a class="btn btn-outline-primary" href="/restaurant/modcat/{{cats.id}}">modifier</a>
+                         <form method="post"  action="{{ path('supcat',{'id': cats.id})}}" onsubmit="return confirm('Voulez vous supprimer ?')">
+                        <input type="hidden" name="_method" value="SUP">
+                        <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ cats.id)}}">
+                        <input type="submit" class="btn btn-outline-primary" value="supprimer">
+                    </form>
+ 
+                           </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+ {% endblock %}
